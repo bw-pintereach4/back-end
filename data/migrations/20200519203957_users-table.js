@@ -1,7 +1,11 @@
 exports.up = async function (knex) {
-  //create users table
+  await knex.schema.createTable("users", (tbl) => {
+    tbl.increments();
+    tbl.text("username").notNull().unique();
+    tbl.text("password").notNull();
+  });
 };
 
 exports.down = async function (knex) {
-  //drop users table
+  await knex.schema.dropTableIfExists();
 };
