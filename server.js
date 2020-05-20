@@ -5,11 +5,16 @@ const port = process.env.PORT || 5000;
 const cors = require("cors");
 // const bodyParser = require("body-parser");
 
+const authRouter = require("./auth/auth-router");
+const resrtict = require("./auth/restrict");
+
 const server = express();
 
 server.use(express.json());
 server.use(cors());
 // server.use(bodyParser());
+
+server.use("/api/auth", authRouter);
 
 server.use((err, req, res, next) => {
   console.log(err);
