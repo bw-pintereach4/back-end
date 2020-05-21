@@ -16,7 +16,7 @@ server.use(cors());
 // server.use(bodyParser());
 
 server.use("/api/auth", authRouter);
-server.use("/api/categories", restrict(), categoriesRouter);
+server.use("/api/categories", categoriesRouter);
 
 server.use((err, req, res, next) => {
   console.log(err);
