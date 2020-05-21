@@ -31,8 +31,8 @@ router.post("/login", async (req, res, next) => {
     const user = await Users.findBy(username).first();
 
     if (!user) {
-      return res.status(401).json({
-        message: "login details invalid",
+      return res.status(428).json({
+        message: "Login details invalid",
       });
     }
 
@@ -40,7 +40,7 @@ router.post("/login", async (req, res, next) => {
 
     if (!passwordCheck) {
       res.status(401).json({
-        message: "invalid credentials",
+        message: "Invalid password",
       });
     }
 
