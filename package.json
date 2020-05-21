@@ -23,7 +23,7 @@
   },
   "scripts": {
     "test": "jest",
-    "server": "nodemon server.js",
+    "server": "nodemon -r dotenv/config server.js",
     "test:watch": "jest --watch"
   },
   "repository": {

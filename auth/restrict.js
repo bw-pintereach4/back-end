@@ -8,7 +8,7 @@ function restrict() {
 
       if (!token) {
         return res.status(401).json({
-          message: "not authorized",
+          message: "token not authorized",
         });
       }
 

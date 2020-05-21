@@ -50,7 +50,9 @@ router.post("/login", async (req, res, next) => {
 
     res.status(200).json({
       welcome: `Welcome, ${user.username}!`,
-      token: jwt.sign(tokenPayload, process.env.JWT_SECRET),
+      token: jwt.sign(tokenPayload, process.env.JWT_SECRET, {
+        expiresIn: "120m",
+      }),
     });
   } catch (err) {
     next(err);
