@@ -6,7 +6,8 @@ const cors = require("cors");
 // const bodyParser = require("body-parser");
 
 const authRouter = require("./auth/auth-router");
-const resrtict = require("./auth/restrict");
+const categoriesRouter = require("./routers/categories/categories-router");
+const restrict = require("./auth/restrict");
 
 const server = express();
 
@@ -15,6 +16,7 @@ server.use(cors());
 // server.use(bodyParser());
 
 server.use("/api/auth", authRouter);
+server.use("/api/categories", categoriesRouter);
 
 server.use((err, req, res, next) => {
   console.log(err);
