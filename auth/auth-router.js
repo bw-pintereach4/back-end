@@ -49,6 +49,7 @@ router.post("/login", async (req, res, next) => {
     };
 
     res.status(200).json({
+      userId: user.id,
       welcome: `Welcome, ${user.username}!`,
       token: jwt.sign(tokenPayload, process.env.JWT_SECRET, {
         expiresIn: "120m",
