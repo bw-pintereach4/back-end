@@ -7,6 +7,7 @@ const cors = require("cors");
 
 const authRouter = require("./auth/auth-router");
 const categoriesRouter = require("./routers/categories/categories-router");
+const articlesRouter = require("./routers/articles/articles-router");
 const restrict = require("./auth/restrict");
 
 const server = express();
@@ -17,6 +18,7 @@ server.use(cors());
 
 server.use("/api/auth", authRouter);
 server.use("/api/categories", categoriesRouter);
+server.use("/api/articles", restrict(), articlesRouter);
 
 server.use((err, req, res, next) => {
   console.log(err);

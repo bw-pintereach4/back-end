@@ -3,6 +3,9 @@ exports.up = async function (knex) {
     tbl.increments();
     tbl.text("username").notNull().unique();
     tbl.text("password").notNull();
+    tbl.text("first_name").notNull();
+    tbl.text("last_name").notNull();
+    tbl.text("email").notNull().unique();
   });
 };
 

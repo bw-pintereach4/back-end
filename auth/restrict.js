@@ -19,7 +19,7 @@ function restrict() {
           });
         }
 
-        req.token = decoded;
+        req.token = { userId: decoded.userId };
 
         next();
       });
