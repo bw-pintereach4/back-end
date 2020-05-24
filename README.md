@@ -175,3 +175,191 @@ Body was empty
 ```
 
 **/----------------------------------------/**
+
+**/--------------------------------------------/ ARTICLE ROUTES /-----------------------------------/**
+
+### **Get articles**
+
+_method url_: `/api/articles`
+
+_http method_: **[GET]**
+
+#### Response
+
+##### 200 (ok)
+
+###### Example response
+
+```
+[
+  {
+    "id": 11,
+    "name": "Test Name",
+    "url": "google.com",
+    "publisher": "Bob Ross",
+    "description": "How to paint like Bob Ross",
+    "user_id": 1
+  }
+]
+```
+
+Each article has its own id and a user_id. The user id points to the user the article is saved to.
+
+##### 404 (Not Found)
+
+Body was empty
+
+This will not throw an error, it will just return an empty array is the user has no saved articles.
+
+##### 500 (Bad Request)
+
+```
+  {
+    message: "something went wrong",
+  }
+```
+
+**/----------------------------------------/**
+
+### **Add articles**
+
+_method url_: `/api/articles`
+
+_http method_: **[POST]**
+
+#### Response
+
+##### 200 (ok)
+
+###### Example response
+
+```
+{
+  "id": 11,
+  "user_id": 1,
+  "name": "Test Name",
+  "url": "google.com",
+  "publisher": "Bob Ross",
+  "description": "How to paint like Bob Ross"
+}
+```
+
+##### 400 (Bad Request)
+
+```
+{
+  "message": "Missing info"
+}
+```
+
+All fields (name, url, pusblisher, description) are required.
+
+##### 500 (Bad Request)
+
+```
+  {
+    message: "something went wrong",
+  }
+```
+
+**/----------------------------------------/**
+
+### **Edit articles**
+
+_method url_: `/api/articles/:id`
+
+# Takes article's ID
+
+_http method_: **[PUT]**
+
+#### Response
+
+##### 200 (ok)
+
+###### Example payload
+
+Endpoint: /api/articles/4
+
+```
+{
+	"name": "Yahoo",
+   "url": "yahoo.com",
+   "publisher": "Bob Ross",
+   "description": "How to use Yahoo like Bob Ross"
+}
+```
+
+###### Example response
+
+```
+[
+  {
+    "id": 4,
+    "name": "Yahoo",
+    "url": "yahoo.com",
+    "publisher": "Bob Ross",
+    "description": "How to use Yahoo like Bob Ross",
+    "user_id": 1
+  }
+]
+```
+
+##### 400 (Bad Request)
+
+```
+{
+  "message": "Missing info"
+}
+```
+
+All fields (name, url, pusblisher, description) are still required (none can be blank).
+
+##### 500 (Bad Request)
+
+```
+  {
+    message: "something went wrong",
+  }
+```
+
+**/----------------------------------------/**
+
+### **Delete articles**
+
+_method url_: `/api/articles/:id`
+
+# Takes article's ID
+
+_http method_: **[DELETE]**
+
+#### Response
+
+##### 200 (ok)
+
+###### Example response
+
+```
+{
+  "message": "Article has been nuked"
+}
+```
+
+##### 400 (Bad Request)
+
+Invalid article ID
+
+```
+{
+  "message": "couldn't find article by that id"
+}
+```
+
+All fields (name, url, pusblisher, description) are still required (none can be blank).
+
+##### 500 (Bad Request)
+
+```
+  {
+    message: "something went wrong",
+  }
+```
