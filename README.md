@@ -93,8 +93,9 @@ _http method_: **[POST]**
 
 ```
   {
-  "welcome": "Welcome, test1!",
-  "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsImlhdCI6MTU5MDA5OTM1NSwiZXhwIjoxNTkwMTA2NTU1fQ.OVhXcNtZEVrP90SReXOp_tfJ17KUAvzOBvp_9degxDs"
+    "userId": 1,
+    "welcome": "Welcome, test1!",
+    "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsImlhdCI6MTU5MDA5OTM1NSwiZXhwIjoxNTkwMTA2NTU1fQ.OVhXcNtZEVrP90SReXOp_tfJ17KUAvzOBvp_9degxDs"
   }
 ```
 
