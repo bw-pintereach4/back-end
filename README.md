@@ -269,7 +269,7 @@ All fields (name, url, pusblisher, description) are required.
 
 _method url_: `/api/articles/:id`
 
-# Takes article's ID
+_Takes article's ID_
 
 _http method_: **[PUT]**
 
