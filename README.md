@@ -413,8 +413,6 @@ Invalid article ID
 }
 ```
 
-All fields (name, url, pusblisher, description) are still required (none can be blank).
-
 ##### 500 (Bad Request)
 
 ```
