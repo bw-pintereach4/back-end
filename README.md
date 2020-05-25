@@ -188,8 +188,6 @@ Body was empty
   }
 ```
 
-**/----------------------------------------/**
-
 **/--------------------------------------------/ ARTICLE ROUTES /-----------------------------------/**
 
 ### **Get articles**
@@ -223,7 +221,54 @@ Each article has its own id and a user_id. The user id points to the user the ar
 
 Body was empty
 
-This will not throw an error, it will just return an empty array is the user has no saved articles.
+This will not throw an error, it will just return an empty array if the user has no saved articles.
+
+##### 500 (Bad Request)
+
+```
+  {
+    message: "something went wrong",
+  }
+```
+
+**/----------------------------------------/**
+
+### **Get articles by Category ID**
+
+_method url_: `/api/articles/categories/:id`
+
+_http method_: **[GET]**
+
+#### Response
+
+##### 200 (ok)
+
+###### Endpoint used: /api/articles/categories/1
+
+###### Example response
+
+```
+[
+  {
+    "name": "Google",
+    "url": "google.com",
+    "publisher": "Bob Ross",
+    "description": "How to use Google like Bob Ross"
+  }
+]
+```
+
+This will return all articles that have the category with an ID of 1 associated with them.
+
+##### 404 (Not Found)
+
+Category ID does not exist
+
+```
+{
+  "message": "Couldn't find articles with those categories"
+}
+```
 
 ##### 500 (Bad Request)
 

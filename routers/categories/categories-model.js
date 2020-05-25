@@ -1,7 +1,7 @@
 const db = require("../../data/config");
 
 function getCategories() {
-  return db("categories").select("category_name");
+  return db("categories").select("*");
 }
 
 module.exports = {
