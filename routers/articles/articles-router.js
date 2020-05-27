@@ -13,6 +13,21 @@ router.get("/", async (req, res, next) => {
   }
 });
 
+router.get("/:id", async (req, res, next) => {
+  try {
+    const article = await db.getArticleById(req.params.id);
+
+    if (!article) {
+      res.status(404).json({
+        message: "couldn't find article by that ID",
+      });
+    }
+    res.status(200).json(article);
+  } catch (err) {
+    next(err);
+  }
+});
+
 router.post("/", async (req, res, next) => {
   try {
     const { name, url, publisher, description, categories } = req.body;

@@ -1,7 +1,45 @@
 const db = require("../../data/config");
 
-function getArticles(id) {
-  return db("articles").where("user_id", id);
+async function getArticles(id) {
+  const articles = await db("articles as a").where("a.user_id", id);
+
+  const categories = articles.map((item) => {
+    return getArticleCategories(item.id);
+  });
+
+  await Promise.all(categories).then((category) => {
+    const articleCategories = {};
+    category.forEach((item) => {
+      item.forEach((item2) => {
+        if (!articleCategories[item2.article_id]) {
+          articleCategories[item2.article_id] = [];
+        }
+        articleCategories[item2.article_id].push(item2.category_name);
+      });
+    });
+    articles.forEach((article) => {
+      if (articleCategories[article.id]) {
+        article.categories = articleCategories[article.id];
+      } else {
+        article.categories = [];
+      }
+    });
+    return articles;
+  });
+  return articles;
+}
+
+// articles.forEach(article => {
+//   value.forEach(i => {
+
+//   })
+// })
+
+function getArticleCategories(articleId) {
+  return db("categories as c")
+    .join("articles_categories as ac", "c.id", "ac.category_id")
+    .where("ac.article_id", articleId)
+    .select("c.category_name", "ac.article_id");
 }
 
 function getArticlesByCategory(catId, userId) {
@@ -12,8 +50,12 @@ function getArticlesByCategory(catId, userId) {
     .select(["a.name", "a.url", "a.publisher", "a.description"]);
 }
 
-function getArticleById(id) {
-  return db("articles").where({ id });
+async function getArticleById(id) {
+  const articles = await db("articles").where({ id }).first();
+
+  const categories = await getArticleCategories(articles.id);
+
+  return { ...articles, categories };
 }
 
 async function addArticle(article) {
@@ -32,10 +74,8 @@ async function deleteArticle(id) {
   return db("articles").where({ id }).del();
 }
 
-async function addCategory(arr) {
-  await db("articles_categories").insert(arr);
-
-  return;
+function addCategory(arr) {
+  return db("articles_categories").insert(arr);
 }
 
 function getCategories() {
@@ -51,6 +91,8 @@ module.exports = {
   getArticlesByCategory,
   getCategoryById,
   getCategories,
+  getArticleById,
+  getArticleCategories,
 };
 
 async function getCategoryById(id) {

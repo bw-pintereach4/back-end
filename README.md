@@ -151,20 +151,25 @@ _http method_: **[GET]**
 ###### Example response
 
 ```
-  [
+[
   {
+    "id": 1,
     "category_name": "Health"
   },
   {
+    "id": 2,
     "category_name": "Educational"
   },
   {
+    "id": 3,
     "category_name": "Sports"
   },
   {
+    "id": 4,
     "category_name": "Technology"
   },
   {
+    "id": 5,
     "category_name": "History"
   }
 ]
@@ -203,16 +208,21 @@ _http method_: **[GET]**
 ###### Example response
 
 ```
-[
-  {
-    "id": 11,
-    "name": "Test Name",
+{
+    "id": 9,
+    "name": "Google",
     "url": "google.com",
     "publisher": "Bob Ross",
-    "description": "How to paint like Bob Ross",
-    "user_id": 1
-  }
-]
+    "description": "How to use Google like Bob Ross",
+    "user_id": 2,
+    "categories": [
+      "Health",
+      "Educational",
+      "Sports",
+      "Technology",
+      "History"
+    ]
+  },
 ```
 
 Each article has its own id and a user_id. The user id points to the user the article is saved to.
