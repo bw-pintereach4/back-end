@@ -290,6 +290,69 @@ Category ID does not exist
 
 **/----------------------------------------/**
 
+### **Get article by ID**
+
+_method url_: `/api/articles`
+
+_http method_: **[POST]**
+
+#### Response
+
+##### 200 (ok)
+
+###### Example response
+
+{
+"id": 9,
+"name": "Google",
+"url": "google.com",
+"publisher": "Bob Ross",
+"description": "How to use Google like Bob Ross",
+"user_id": 2,
+"categories": [
+{
+"category_name": "Health",
+"article_id": 9
+},
+{
+"category_name": "Educational",
+"article_id": 9
+},
+{
+"category_name": "Sports",
+"article_id": 9
+},
+{
+"category_name": "Technology",
+"article_id": 9
+},
+{
+"category_name": "History",
+"article_id": 9
+}
+]
+}
+
+##### 400 (Bad Request)
+
+```
+{
+  "message": "Missing info"
+}
+```
+
+All fields (name, url, pusblisher, description) are required.
+
+##### 500 (Bad Request)
+
+```
+  {
+    message: "something went wrong",
+  }
+```
+
+**/----------------------------------------/**
+
 ### **Add articles**
 
 _method url_: `/api/articles`
