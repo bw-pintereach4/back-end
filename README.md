@@ -151,20 +151,25 @@ _http method_: **[GET]**
 ###### Example response
 
 ```
-  [
+[
   {
+    "id": 1,
     "category_name": "Health"
   },
   {
+    "id": 2,
     "category_name": "Educational"
   },
   {
+    "id": 3,
     "category_name": "Sports"
   },
   {
+    "id": 4,
     "category_name": "Technology"
   },
   {
+    "id": 5,
     "category_name": "History"
   }
 ]
@@ -203,16 +208,21 @@ _http method_: **[GET]**
 ###### Example response
 
 ```
-[
-  {
-    "id": 11,
-    "name": "Test Name",
+{
+    "id": 9,
+    "name": "Google",
     "url": "google.com",
     "publisher": "Bob Ross",
-    "description": "How to paint like Bob Ross",
-    "user_id": 1
-  }
-]
+    "description": "How to use Google like Bob Ross",
+    "user_id": 2,
+    "categories": [
+      "Health",
+      "Educational",
+      "Sports",
+      "Technology",
+      "History"
+    ]
+  },
 ```
 
 Each article has its own id and a user_id. The user id points to the user the article is saved to.
@@ -269,6 +279,69 @@ Category ID does not exist
   "message": "Couldn't find articles with those categories"
 }
 ```
+
+##### 500 (Bad Request)
+
+```
+  {
+    message: "something went wrong",
+  }
+```
+
+**/----------------------------------------/**
+
+### **Get article by ID**
+
+_method url_: `/api/articles`
+
+_http method_: **[POST]**
+
+#### Response
+
+##### 200 (ok)
+
+###### Example response
+
+{
+"id": 9,
+"name": "Google",
+"url": "google.com",
+"publisher": "Bob Ross",
+"description": "How to use Google like Bob Ross",
+"user_id": 2,
+"categories": [
+{
+"category_name": "Health",
+"article_id": 9
+},
+{
+"category_name": "Educational",
+"article_id": 9
+},
+{
+"category_name": "Sports",
+"article_id": 9
+},
+{
+"category_name": "Technology",
+"article_id": 9
+},
+{
+"category_name": "History",
+"article_id": 9
+}
+]
+}
+
+##### 400 (Bad Request)
+
+```
+{
+  "message": "Missing info"
+}
+```
+
+All fields (name, url, pusblisher, description) are required.
 
 ##### 500 (Bad Request)
 
