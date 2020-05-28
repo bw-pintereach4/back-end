@@ -84,7 +84,7 @@ router.get("/categories/:id", async (req, res, next) => {
 
 router.put("/:id", async (req, res, next) => {
   try {
-    const { name, url, publisher, description } = req.body;
+    const { name, url, publisher, description, categories } = req.body;
 
     if (!name || !url || !publisher || !description) {
       return res.status(400).json({
@@ -92,9 +92,29 @@ router.put("/:id", async (req, res, next) => {
       });
     }
 
-    const article = await db.editArticle(req.body, req.params.id);
+    const payload = {
+      name,
+      url,
+      publisher,
+      description,
+    };
 
-    res.status(200).json(article);
+    const article = await db.editArticle(payload, req.params.id);
+
+    const categories2 = categories.map((id) => {
+      return {
+        article_id: article.id,
+        category_id: id,
+      };
+    });
+
+    await db.deleteCategories(article.id);
+
+    await db.addCategory(categories2);
+
+    const newArticle = await db.getArticleById(article.id);
+
+    res.status(200).json(newArticle);
   } catch (err) {
     next(err);
   }
