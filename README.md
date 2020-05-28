@@ -438,26 +438,35 @@ Endpoint: /api/articles/4
 
 ```
 {
-	"name": "Yahoo",
-   "url": "yahoo.com",
-   "publisher": "Bob Ross",
-   "description": "How to use Yahoo like Bob Ross"
+	"name": "Test",
+  "url": "test.com",
+  "publisher": "test",
+  "description": "test test test",
+	"categories": [2, 3]
 }
 ```
 
 ###### Example response
 
 ```
-[
-  {
-    "id": 4,
-    "name": "Yahoo",
-    "url": "yahoo.com",
-    "publisher": "Bob Ross",
-    "description": "How to use Yahoo like Bob Ross",
-    "user_id": 1
-  }
-]
+{
+  "id": 7,
+  "name": "Test",
+  "url": "test.com",
+  "publisher": "test",
+  "description": "test test test",
+  "user_id": 2,
+  "categories": [
+    {
+      "category_name": "Educational",
+      "article_id": 7
+    },
+    {
+      "category_name": "Sports",
+      "article_id": 7
+    }
+  ]
+}
 ```
 
 ##### 400 (Bad Request)
@@ -468,7 +477,7 @@ Endpoint: /api/articles/4
 }
 ```
 
-All fields (name, url, pusblisher, description) are still required (none can be blank).
+For the edit, at least one edit to at least one field is required to make the put request.
 
 ##### 500 (Bad Request)
 
