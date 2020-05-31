@@ -1,8 +1,5 @@
 const db = require("../../data/config");
 
-const bcrypt = require("bcryptjs");
-const jwt = require("jsonwebtoken");
-
 function findBy(username) {
   return db("users").where({ username });
 }

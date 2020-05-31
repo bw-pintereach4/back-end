@@ -24,7 +24,7 @@
   "scripts": {
     "test": "jest",
     "server": "nodemon -r dotenv/config server.js",
-    "test:watch": "jest --watch"
+    "test:watch": "jest --watch --runInBand"
   },
   "repository": {
     "type": "git",
